@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/fa4993565a.js" crossorigin="anonymous"></script>
+
+    <style>
+        .btn {
+            
+            border: none;
+            
+            padding: 12px 16px;
+            
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="ex1" style="font-size: 0.5rem;">
+        <i @click="bt(10)" class="fas fa-thumbs-up btn fa-3x"></i>
+        <i @click="bt(20)" class="fas fa-heart btn fa-3x"></i>
+        <i @click="bt(25)" class="fas fa-laugh-squint btn fa-3x"></i>
+        <i @click="bt(30)" class="fas fa-surprise btn fa-3x"></i>
+        <i @click="bt(-15)" class="fas fa-sad-tear btn fa-3x"></i>
+        <i @click="bt(-50)" class="fas fa-angry btn fa-3x"></i>
+        <button @click="res('reset')">Reset</button>
+        <br><br>
+        <h1>Total = {{counter}}</h1>
+
+    </div>
+
+    <div id="ex2">
+
+        Like = {{like}} <br>
+        Love = {{love}} <br>
+        Laught = {{laught}} <br>
+        Wow = {{wow}} <br>
+        Sad = {{sad}} <br>
+        Angry = {{angry}}
+    </div>
+
+
+
+
+
+
+    <script>
+        var example1 = new Vue({
+            el: '#ex1',
+            data: {
+                counter: 0
+            },
+            methods: {
+                bt: function (i) {
+
+                    this.counter += i;
+                    if (i == 10) {
+                        example2.like += 1;
+                    }
+                    else if (i == 20) {
+                        example2.love += 1
+                    }
+                    else if (i == 25) {
+                        example2.laught += 1
+                    }
+                    else if (i == 30) {
+                        example2.wow += 1
+                    }
+                    else if (i == -15) {
+                        example2.sad += 1
+                    }
+                    else if (i == -50) {
+                        example2.angry += 1
+                    }
+                },
+                res: function (i) {
+
+                    this.counter = 0;
+                    example2.like = 0;
+                    example2.love = 0;
+                    example2.laught = 0;
+                    example2.wow = 0;
+                    example2.sad = 0;
+                    example2.angry = 0;
+
+                }
+            }
+        })
+
+        var example2 = new Vue({
+            el: '#ex2',
+            data: {
+                like: 0,
+                love: 0,
+                laught: 0,
+                wow: 0,
+                sad: 0,
+                angry: 0
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

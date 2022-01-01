@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/fa4993565a.js" crossorigin="anonymous"></script>
+    <style>
+        img {
+            height: 100px;
+
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto auto;
+
+
+        }
+
+        .shin1 {
+            position: relative;
+
+            left: 100px;
+        }
+
+        progress {
+            border: none;
+            width: 150px;
+            height: 10px;
+            background: crimson;
+        }
+
+        progress {
+            color: lightblue;
+        }
+
+        progress::-moz-progress-bar {
+            background: lightcolor;
+        }
+
+        progress::-webkit-progress-value {
+            background: red;
+        }
+
+        progress::-webkit-progress-bar {
+            background: #ffffff;
+        }
+    </style>
+</head>
+
+<body style="background-color: #2196F3; color: aliceblue;">
+
+    <div class="grid-container shin1" id="ex1">
+        <div class="">
+            Player <progress id="heal1" value="100" max="100"></progress>
+        </div>
+        <div>
+            Monster <progress id="heal2" value="100" max="100"></progress>
+            
+        </div>
+        <div class="">
+
+            <img src="shin4.jpg" alt="">
+
+        </div>
+        <div>
+
+            <img src="shin3.jpg" alt="">
+        </div>
+        <div >
+            <button id="but1" @click="randomDamage(3,10)" type="button" >Attack</button>
+            <button id="but2" @click="randomDamage(10,20)" type="button" >Special Attack</button>
+        </div>
+        <div>
+
+        </div>
+
+
+
+
+
+        <h1 style="text-align: center;">Winner is {{win}}</h1> <br><br><br><br>
+        <span>Play again >> <button @click="res()">Start</button></span>
+    </div>
+
+</body>
+<script>
+    
+    
+    var example1 = new Vue({
+        el: '#ex1',
+        data: {
+            player: 100,
+            monster: 100,
+            win: "?"
+        },
+        methods: {
+            randomDamage: function (min, max) {
+
+                this.monster = this.monster - Math.max(Math.floor(Math.random() * max) + 1, min);
+                heal2.value =this.monster;
+                this.attackBack(5, 15);
+            },
+
+            attackBack: function (min, max) {
+                this.player = this.player - Math.max(Math.floor(Math.random() * max) + 1, min);
+                heal1.value = this.player;
+                this.winner();
+            },
+            winner: function () {
+                if (this.player <= 0) {
+                    this.win = "Monster"    
+                    document.getElementById("but1").disabled=true;
+                    document.getElementById("but2").disabled=true;
+                    
+                }
+                else if (this.monster <= 0) {
+                    this.win = "Player"
+                    document.getElementById("but1").disabled=true;
+                    document.getElementById("but2").disabled=true;
+                }
+
+            },
+            res: function () {
+                this.player = 100
+                this.monster = 100
+                this.win = "?"
+                heal1.value=this.player
+                heal2.value=this.monster
+                document.getElementById("but1").disabled=false;
+                document.getElementById("but2").disabled=false;
+            }
+        },
+
+    })
+
+</script>
+
+</html>
